@@ -1,0 +1,7 @@
+body {
+    
+    background:url("../Images/news.jpg") repeat center fixed;
+    color: white;
+    background-size: cover;
+    height:100%
+}
