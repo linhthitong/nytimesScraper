@@ -1,15 +1,28 @@
+
+
+$("#get-news").on("click", function(){
+  $.ajax({
+    method: "GET",
+    url: "/scrape/" 
+  }).then(function(){
+    window.location.replace("/");
+  })
+})
+
+
+
 // Grab the articles as a json
 $.getJSON("/articles", function(data) {
     // For each one
     for (var i = 0; i < data.length; i++) {
       // Display the apropos information on the page
-      $("#articles").append("<p data-id='" + data[i]._id + "'>" + data[i].title + "<br />" + data[i].link + "<br />" + data[i].summary + "</p>");
+      $("#articles").append("<p data-id='" + data[i]._id + "'>" + data[i].title + "<br /> <strong>" + data[i].link + "</strong> <br />" + data[i].summary + "</p> <hr>");
     }
-  });
+});
   
   
   // Whenever someone clicks a p tag
-  $(document).on("click", "p", function() {
+$(document).on("click", "p", function() {
     // Empty the notes from the note section
     $("#notes").empty();
     // Save the id from the p tag
@@ -40,10 +53,10 @@ $.getJSON("/articles", function(data) {
           $("#bodyinput").val(data.note.body);
         }
       });
-  });
+});
   
-  // When you click the savenote button
-  $(document).on("click", "#savenote", function() {
+
+$(document).on("click", "#savenote", function() {
     // Grab the id associated with the article from the submit button
     var thisId = $(this).attr("data-id");
   
@@ -70,4 +83,3 @@ $.getJSON("/articles", function(data) {
     $("#titleinput").val("");
     $("#bodyinput").val("");
   });
-  
